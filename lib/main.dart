@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'home.dart';
 
-
+//good
 Future<void> main() async {
   // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
   WidgetsFlutterBinding.ensureInitialized();
