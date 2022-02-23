@@ -82,26 +82,26 @@ class MainScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5.0),
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/crunch.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/crunch.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                   //////팔 드는 것
                   Stack(
@@ -124,26 +124,26 @@ class MainScreen extends StatelessWidget {
                     ],
                   ),
 
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/push_up.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/push_up.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   Stack(
                     children: <Widget>[
                       Container(
@@ -163,46 +163,46 @@ class MainScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/plank.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/lunge_squat.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/plank.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/lunge_squat.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -226,26 +226,27 @@ class MainScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 5.0),
                 scrollDirection: Axis.horizontal,
                 children: [
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/yoga1.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/yoga1.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  //////중요
                   Stack(
                     children: <Widget>[
                       Container(
@@ -265,66 +266,66 @@ class MainScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/yoga2.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/yoga3.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/yoga5.PNG')),
-                          onPressed: () {
-                            print('hello');
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/yoga2.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/yoga3.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/yoga5.PNG')),
+                  //         onPressed: () {
+                  //           print('hello');
+                  //         },
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
