@@ -25,7 +25,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
   late double shoulderLY;
   late double shoulderRY;
 
-  late double wristLX, wristLY, wristRX, wristRY, elbowLX, elbowRX; //손목과 팔꿈치 x,y 좌표
+  late double wristLX, wristLY, wristRX, wristRY, elbowLX, elbowRX, elbowLY, elbowRY; //손목과 팔꿈치 x,y 좌표
   late double kneeRY; //오른쪽 무릎 y좌표
   late double kneeLY; //왼쪽 무릎 y좌표
   late bool squatUp;
@@ -61,7 +61,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
     super.initState();
   }
 
-  bool ?_postureAccordingToExercise(Map<String, List<double>> poses) {
+  bool? _postureAccordingToExercise(Map<String, List<double>> poses) {
     setState(() {
       wristLX = poses['leftWrist']![0];
       wristLY = poses['leftWrist']![1];
@@ -69,6 +69,8 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
       wristRY = poses['rightWrist']![1];
       elbowLX = poses['leftElbow']![0];
       elbowRX = poses['rightElbow']![0];
+      elbowLY = poses['leftElbow']![1];
+      elbowRY = poses['rightElbow']![1];
 
       shoulderLY = poses['leftShoulder']![1];
       shoulderRY = poses['rightShoulder']![1];
@@ -80,19 +82,13 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
 
         print("팔이 내려져 있을 때 $wristLX $wristLY // $wristRX");
 
-        return
-            wristLX > 280 &&
-            elbowLX > 280 &&
-            wristRX < 95 &&
-            elbowRX < 95 &&
+        return wristLY > shoulderLY || wristRY > shoulderRY;
 
-            wristLY < 240 && wristLY > 200 &&
-            wristRY < 240 && wristRY > 200;
       } else { //팔이 올려져 있을때
 
         print("팔이 올려져 있을 때 $wristLY $wristRY");
 
-        return wristLY < 125 && wristRY < 125;
+        return wristLY < shoulderLY || wristRY < shoulderRY;
       }
     }
   }
@@ -158,9 +154,15 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
   }
 
   void incrementCounter() {
-    setState(() {
-      _counter++;
-    });
+    if(_counter == 2)
+      setState(() {
+        _counter = 0;
+        //알람 추가하기
+      });
+    else
+      setState(() {
+        _counter++;
+      });
   }
 
   @override
@@ -275,14 +277,14 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
             width: 100,
             height: 15,
             child: Container(
-                // child: Text(
-                //   "● ${k["part"]}",
-                //   style: TextStyle(
-                //     color: Color.fromRGBO(37, 213, 253, 1.0),
-                //     fontSize: 12.0,
-                //   ),
-                // ),
-                ),
+              // child: Text(
+              //   "● ${k["part"]}",
+              //   style: TextStyle(
+              //     color: Color.fromRGBO(37, 213, 253, 1.0),
+              //     fontSize: 12.0,
+              //   ),
+              // ),
+            ),
           );
         }).toList();
 
@@ -302,7 +304,7 @@ class _RenderDataArmPressState extends State<RenderDataArmPress> {
           children: [
             CustomPaint(
               painter:
-                  MyPainter(left: leftShoulderPos, right: rightShoulderPos),
+              MyPainter(left: leftShoulderPos, right: rightShoulderPos),
             ),
             CustomPaint(
               painter: MyPainter(left: leftElbowPos, right: leftShoulderPos),
@@ -391,5 +393,6 @@ class MyPainter extends CustomPainter {
     return false;
   }
 }
+
 
 
