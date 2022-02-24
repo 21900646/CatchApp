@@ -117,7 +117,14 @@ class MainScreen extends StatelessWidget {
                           child: Container(
                               padding: EdgeInsets.all(10.0),
                               child: Image.asset('images/arm_press.PNG')),
-                          onPressed: () =>{},
+                          onPressed: () =>{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                PushedPageA(cameras: cameras, title: 'posenet'),
+                              ),
+                            )
+                          },
                               // onSelectA(context: context, modelName: 'posenet'),
                         ),
                       ),
