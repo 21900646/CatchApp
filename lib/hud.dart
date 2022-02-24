@@ -48,16 +48,15 @@ class TakePictureScreenState extends State<TakePictureScreen> {
         ResolutionPreset.medium,
       );
 
-      _initializeControllerFuture = _controller.initialize().then((_) {
+      _initializeControllerFuture = _controller.initialize().then((_) async {
         if (!mounted) {
           return;
         }
         setState(() {});
 
+        await _controller.lockCaptureOrientation();
+
         _controller.startImageStream((CameraImage img) async {
-          // String filePath = "";
-          // XFile picture = await _controller.takePicture();
-          // picture.saveTo(filePath);
 
           // print("filePath ---------->");
           // print(filePath);
