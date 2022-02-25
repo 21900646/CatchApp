@@ -2,8 +2,8 @@ package io.flutter.plugins;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
-import io.flutter.Log;
 
+import io.flutter.Log;
 import io.flutter.embedding.engine.FlutterEngine;
 import io.flutter.embedding.engine.plugins.shim.ShimPluginRegistry;
 
@@ -71,6 +71,11 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new com.google_ml_kit.GoogleMlKitPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin google_ml_kit, com.google_ml_kit.GoogleMlKitPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new io.flutter.plugins.imagepicker.ImagePickerPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin image_picker, io.flutter.plugins.imagepicker.ImagePickerPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.pathprovider.PathProviderPlugin());

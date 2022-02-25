@@ -5,8 +5,6 @@ import 'package:camera/camera.dart';
 
 import 'main.dart';
 import 'pushed_pageA.dart';
-import 'pushed_pageS.dart';
-import 'pushed_pageY.dart';
 
 class MainScreen extends StatelessWidget {
   final List<CameraDescription> cameras;
@@ -117,7 +115,14 @@ class MainScreen extends StatelessWidget {
                           child: Container(
                               padding: EdgeInsets.all(10.0),
                               child: Image.asset('images/arm_press.PNG')),
-                          onPressed: () =>{},
+                          onPressed: () =>{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  PushedPageA(cameras: cameras, title: 'posenet'),
+                              ),
+                            )
+                          },
                               // onSelectA(context: context, modelName: 'posenet'),
                         ),
                       ),
@@ -247,25 +252,25 @@ class MainScreen extends StatelessWidget {
                   //   ],
                   // ),
                   //////중요
-                  Stack(
-                    children: <Widget>[
-                      Container(
-                        width: 100,
-                        height: 100,
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0)),
-                          color: Colors.white,
-                          child: Container(
-                              padding: EdgeInsets.all(10.0),
-                              child: Image.asset('images/yoga4.PNG')),
-                          onPressed: () =>
-                              onSelectY(context: context, modelName: 'posenet'),
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     Container(
+                  //       width: 100,
+                  //       height: 100,
+                  //       padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //       child: RaisedButton(
+                  //         shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(18.0)),
+                  //         color: Colors.white,
+                  //         child: Container(
+                  //             padding: EdgeInsets.all(10.0),
+                  //             child: Image.asset('images/yoga4.PNG')),
+                  //         onPressed: () =>{}
+                  //             //onSelectY(context: context, modelName: 'posenet'),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   // Stack(
                   //   children: <Widget>[
                   //     Container(
@@ -343,17 +348,17 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-// void onSelectA({required BuildContext context, required String modelName}) async {
-//   Navigator.push(
-//     context,
-//     MaterialPageRoute(
-//       builder: (context) => PushedPageA(
-//         cameras: cameras,
-//         title: modelName,
-//       ),
-//     ),
-//   );
-// }
+void onSelectA({required BuildContext context, required String modelName}) async {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => PushedPageA(
+        cameras: cameras,
+        title: modelName,
+      ),
+    ),
+  );
+}
 //
 // void onSelectS({required BuildContext context, required String modelName}) async {
 //   Navigator.push(
@@ -367,14 +372,14 @@ class MainScreen extends StatelessWidget {
 //   );
 // }
 
-void onSelectY({required BuildContext context, required String modelName}) async {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => PushedPageY(
-        cameras: cameras,
-        title: modelName,
-      ),
-    ),
-  );
-}
+// void onSelectY({required BuildContext context, required String modelName}) async {
+//   Navigator.push(
+//     context,
+//     MaterialPageRoute(
+//       builder: (context) => PushedPageY(
+//         cameras: cameras,
+//         title: modelName,
+//       ),
+//     ),
+//   );
+// }
