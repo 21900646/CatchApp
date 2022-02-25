@@ -45,7 +45,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   void initState() {
     super.initState();
-    create('');
   }
 
   create(String audio) async{
@@ -134,6 +133,25 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   @override
+  Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
+    switch (state){
+      case AppLifecycleState.inactive:
+      //speak('주차를 어디에 하셨는지 사진으로 촬영해주세요 ');
+        print("inactive");
+        break;
+
+      case AppLifecycleState.paused:
+        create('');
+        update_list();
+        print("paused");
+        break;
+
+      case AppLifecycleState.detached:
+        print("detached");
+        break;
+    }
+  }
+
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
     return Scaffold(
