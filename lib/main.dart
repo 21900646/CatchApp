@@ -86,7 +86,7 @@ class CatchApp extends StatelessWidget {
             title: 'Catch',
             debugShowCheckedModeBanner: false,
             home: HomeScreen(cameras),
-            //initialRoute: '/splash',
+            // initialRoute: '/splash',
             routes: {
 
               // '/login': (context) => login(cameras),

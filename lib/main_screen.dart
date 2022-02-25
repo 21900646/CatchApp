@@ -62,10 +62,11 @@ class MainScreen extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) =>
-                                PushedPageA(cameras: cameras, title: 'posenet'),
+                                  PushedPageA(cameras: cameras, title: 'posenet'),
                               ),
                             )
                           },
+                              // onSelectA(context: context, modelName: 'posenet'),
                         ),
                       ),
                     ],
@@ -78,4 +79,16 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+void onSelectA({required BuildContext context, required String modelName}) async {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => PushedPageA(
+        cameras: cameras,
+        title: modelName,
+      ),
+    ),
+  );
 }

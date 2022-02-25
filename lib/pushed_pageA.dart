@@ -15,6 +15,7 @@ class PushedPageA extends StatefulWidget {
 
 class _PushedPageAState extends State<PushedPageA> {
   List<dynamic> _data = [];
+
   int _imageHeight = 0;
   int _imageWidth = 0;
   int x = 1;
@@ -69,5 +70,3 @@ class _PushedPageAState extends State<PushedPageA> {
     );
   }
 }
-
-

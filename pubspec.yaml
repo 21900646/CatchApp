@@ -54,6 +54,7 @@ dependencies:
   flutter_native_screenshot: ^1.1.2
   font_awesome_flutter: ^8.10.0
   line_awesome_flutter: ^2.0.0
+  image_picker: ^0.8.4+4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
