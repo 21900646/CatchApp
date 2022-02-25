@@ -3,6 +3,7 @@ import 'package:catch_app/pose_taxi/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
+import 'detectDrawsy/face_detector_view.dart';
 import 'main.dart';
 import 'pushed_pageA.dart';
 
@@ -65,8 +66,31 @@ class MainScreen extends StatelessWidget {
                                   PushedPageA(cameras: cameras, title: 'posenet'),
                               ),
                             )
-                          },
-                              // onSelectA(context: context, modelName: 'posenet'),
+                          }, // onSelectA(context: context, modelName: 'posenet'),
+                        ),
+                      ),
+
+                      Container(
+                        width: 100,
+                        height: 100,
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0)),
+                          color: Colors.white,
+                          child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "졸음 감지",
+                              )),
+                          onPressed: () =>{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  FaceDetectorView2(),
+                              ),
+                            )
+                          }, // onSelectA(context: context, modelName: 'posenet'),
                         ),
                       ),
                     ],
