@@ -42,6 +42,8 @@ import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'home.dart';
@@ -56,6 +58,9 @@ Future<void> main() async {
   await Permission.bluetooth.request();
   await Permission.microphone.request();
   await Permission.location.request();
+
+  await Hive.initFlutter();
+  await Hive.openBox('picture');
 
   try {
     cameras = await availableCameras();
