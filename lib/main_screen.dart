@@ -11,6 +11,7 @@ import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
+import 'detectDrawsy/face_detector_view.dart';
 import 'detectObject/camera.dart';
 import 'main.dart';
 import 'pushed_pageA.dart';
@@ -200,8 +201,31 @@ class _MainScreenState extends State<MainScreen> {
                                   PushedPageA(cameras: widget.cameras, title: 'posenet'),
                               ),
                             )
-                          },
-                              // onSelectA(context: context, modelName: 'posenet'),
+                          }, // onSelectA(context: context, modelName: 'posenet'),
+                        ),
+                      ),
+
+                      Container(
+                        width: 100,
+                        height: 100,
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0)),
+                          color: Colors.white,
+                          child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text(
+                                "졸음 감지",
+                              )),
+                          onPressed: () =>{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  FaceDetectorView2(),
+                              ),
+                            )
+                          }, // onSelectA(context: context, modelName: 'posenet'),
                         ),
                       ),
                     ],

@@ -118,6 +118,7 @@ class _CameraViewState extends State<CameraView> {
     _controller = CameraController(
       camera,
       ResolutionPreset.low,
+      //////
       enableAudio: false,
     );
     _controller?.initialize().then((_) {
