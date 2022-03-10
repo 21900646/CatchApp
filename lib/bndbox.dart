@@ -9,6 +9,7 @@ import 'detectObject/home.dart';
 import 'main_screen.dart';
 
 bool user_want_same = false; //유저가 원하는 물체가 없다.
+String picture_name = '';
 
 class BndBox extends StatefulWidget{
   final List<dynamic> results;
@@ -113,6 +114,7 @@ class _BndBoxState extends State<BndBox> {
             if(re["detectedClass"]==user_want[i]){
               setState(() {
                 user_want_same = true;
+                picture_name = re["detectedClass"];
               });
             }
           if(!user_want_same)
@@ -138,6 +140,7 @@ class _BndBoxState extends State<BndBox> {
             if(re["detectedClass"]==user_want[i]){
               setState(() {
                 user_want_same = true;
+                picture_name = re["detectedClass"];
               });
             }
           if(!user_want_same)

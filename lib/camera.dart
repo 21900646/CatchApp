@@ -63,7 +63,6 @@ class _CameraState extends State<Camera> {
 
         controller.startImageStream((CameraImage img) async {
 
-          //방법 3(flutter_navtive_screenshot --성공 but. 두 개 찍히고 카메라가 너무 느려짐)
           if(user_want_same){
             String? path = await FlutterNativeScreenshot.takeScreenshot();
             print(path);
@@ -165,7 +164,7 @@ class _CameraState extends State<Camera> {
       FirebaseFirestore.instance
           .collection("user_picture")
           .doc("1")
-          .update({"url": url});
+          .update({'url':FieldValue.arrayUnion([url])});
     } catch (e) {
       print(e);
     }
