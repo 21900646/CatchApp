@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:catch_app/detectObject/camera.dart';
 import 'dart:math' as math;
 //import 'foundPeople/home.dart';
-import '../../home.dart';
 // import '../../speed.dart';
 import 'home.dart';
 
