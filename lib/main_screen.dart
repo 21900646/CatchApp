@@ -14,6 +14,7 @@ import 'package:tflite/tflite.dart';
 
 import 'detectDrawsy/face_detector_view.dart';
 import 'detectObject/camera.dart';
+import 'gallery.dart';
 import 'hud.dart';
 import 'main.dart';
 import 'pushed_pageA.dart';
@@ -276,6 +277,33 @@ class _MainScreenState extends State<MainScreen> {
                               context,
                               MaterialPageRoute(builder: (context) =>
                                   Parking(),
+                              ),
+                            )
+                          },
+                          // onSelectA(context: context, modelName: 'posenet'),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Stack(
+                    children: <Widget>[
+                      Container(
+                        width: 100,
+                        height: 100,
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0)),
+                          color: Colors.white,
+                          child: Container(
+                              padding: EdgeInsets.all(10.0),
+                              child: Text('갤러리 ')),
+                          onPressed: () =>{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>
+                                  Gallery(),
                               ),
                             )
                           },
