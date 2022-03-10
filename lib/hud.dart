@@ -5,86 +5,92 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:tflite/tflite.dart';
 import 'package:flutter_native_screenshot/flutter_native_screenshot.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:image/image.dart' as imglib;
+import 'dart:math' as math;
+
+import 'bndbox.dart';
+import 'camera.dart';
+import 'main.dart';
+import 'main.dart';
 
 
 class TakePictureScreen extends StatefulWidget {
-  final CameraDescription camera;
+  final List<CameraDescription> cameras;
 
   TakePictureScreen({
-    required this.camera,
+    required this.cameras,
   });
 
   @override
-  TakePictureScreenState createState() => TakePictureScreenState(camera: camera);
+  TakePictureScreenState createState() => TakePictureScreenState(cameras);
 }
 
 
 class TakePictureScreenState extends State<TakePictureScreen> {
-  final CameraDescription camera;
-  TakePictureScreenState({required this.camera});
+  final List<CameraDescription> cameras;
+  TakePictureScreenState(this.cameras);
 
   late CameraController _controller;
   late Future<void> _initializeControllerFuture ;
   ScreenshotController screenshotController = ScreenshotController();
 
+  List<dynamic> _recognitions = [];
+  int _imageHeight = 0;
+  int _imageWidth = 0;
+  String _model = "SSD";
+
+
   @override
   void initState() {
-    super.initState();
 
-    if (widget.camera == null) {
-      print('No camera is found');
-    } else {
-      // 카메라의 현재 출력물을 보여주기 위해 CameraController를 생성합니다.
-      _controller = CameraController(
-        // 이용 가능한 카메라 목록에서 특정 카메라를 가져옵니다.
-        widget.camera,
-
-        // 적용할 해상도를 지정합니다.
-        ResolutionPreset.medium,
-      );
-
-      _initializeControllerFuture = _controller.initialize().then((_) async {
-        if (!mounted) {
-          return;
-        }
-        setState(() {});
-
-        await _controller.lockCaptureOrientation();
-
-        _controller.startImageStream((CameraImage img) async {
-
-          // print("filePath ---------->");
-          // print(filePath);
-
-          //방법 1(cameraimage -> file --실패. 너무 시간이 오래 걸림. )
-          //convertYUV420toImageColor(img);
-
-          //방법 2(screenshot_controller 사용 --실패, cameraPreview가 촬영이 안됨.)
-          // screenshotController
-          //   .capture(delay: Duration(milliseconds: 10))
-          //   .then((capturedImage) async{
-          //     //이미지 확인
-          //     ShowCapturedWidget(context, capturedImage!);
-          //
-          //     Image_upload(capturedImage!);
-          // });
-
-          //방법 3(flutter_navtive_screenshot --성공 but. 두 개 찍히고 카메라가 너무 느려짐)
-          // String? path = await FlutterNativeScreenshot.takeScreenshot();
-          // print(path);
-          //
-          // File imgFile = File(path!);
-          // Image_upload2(imgFile);
-
-          print("here!");
-        });
-    });
-  }}
+    // if (widget.cameras == null) {
+    //   print('No camera is found');
+    // } else {
+    //   // 카메라의 현재 출력물을 보여주기 위해 CameraController를 생성합니다.
+    //   _controller = CameraController(
+    //     // 이용 가능한 카메라 목록에서 특정 카메라를 가져옵니다.
+    //     widget.cameras[0],
+    //
+    //     // 적용할 해상도를 지정합니다.
+    //     ResolutionPreset.medium,
+    //   );
+    //
+    //   _initializeControllerFuture = _controller.initialize().then((_) async {
+    //     if (!mounted) {
+    //       return;
+    //     }
+    //     setState(() {});
+    //
+    //     await _controller.lockCaptureOrientation();
+    //
+    //     _controller.startImageStream((CameraImage img) async {
+    //
+    //       // print("filePath ---------->");
+    //       // print(filePath);
+    //
+    //       //방법 1(cameraimage -> file --실패. 너무 시간이 오래 걸림. )
+    //       //convertYUV420toImageColor(img);
+    //
+    //       //방법 2(screenshot_controller 사용 --실패, cameraPreview가 촬영이 안됨.)
+    //       // screenshotController
+    //       //   .capture(delay: Duration(milliseconds: 10))
+    //       //   .then((capturedImage) async{
+    //       //     //이미지 확인
+    //       //     ShowCapturedWidget(context, capturedImage!);
+    //       //
+    //       //     Image_upload(capturedImage!);
+    //       // });
+    //
+    //       print("here!");
+    //     });
+    // });
+  // }
+}
 
   @override
   void dispose() {
@@ -106,40 +112,40 @@ class TakePictureScreenState extends State<TakePictureScreen> {
     }
   }
 
-  Image_upload(Uint8List list) async {
-    final tempDir = await getTemporaryDirectory();
-    File file = await File('${tempDir.path}/image.png').create();
-    file.writeAsBytesSync(list);
+  // Image_upload(Uint8List list) async {
+  //   final tempDir = await getTemporaryDirectory();
+  //   File file = await File('${tempDir.path}/image.png').create();
+  //   file.writeAsBytesSync(list);
+  //
+  //   var snapshot = await FirebaseStorage.instance
+  //       .ref()
+  //       .child('${DateTime.now()}.png')
+  //       .putFile(file);
+  //
+  //   String url = await snapshot.ref.getDownloadURL();
+  //   await update(url);
+  // }
 
-    var snapshot = await FirebaseStorage.instance
-        .ref()
-        .child('${DateTime.now()}.png')
-        .putFile(file);
-
-    String url = await snapshot.ref.getDownloadURL();
-    await update(url);
-  }
-
-  Image_upload2(File file) async {
-    var snapshot = await FirebaseStorage.instance
-        .ref()
-        .child('${DateTime.now()}.png')
-        .putFile(file);
-
-    String url = await snapshot.ref.getDownloadURL();
-    await update(url);
-  }
-
-  update(String url) async {
-    try {
-      FirebaseFirestore.instance
-          .collection("user_picture")
-          .doc("1")
-          .update({"url": url});
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Image_upload2(File file) async {
+  //   var snapshot = await FirebaseStorage.instance
+  //       .ref()
+  //       .child('${DateTime.now()}.png')
+  //       .putFile(file);
+  //
+  //   String url = await snapshot.ref.getDownloadURL();
+  //   await update(url);
+  // }
+  //
+  // update(String url) async {
+  //   try {
+  //     FirebaseFirestore.instance
+  //         .collection("user_picture")
+  //         .doc("1")
+  //         .update({"url": url});
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   Future<void> convertYUV420toImageColor(CameraImage image) async {
     try {
@@ -177,7 +183,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       print("----------------------------");
       print(Uint8List.fromList(png));
 
-      Image_upload(Uint8List.fromList(png));
+      //Image_upload(Uint8List.fromList(png));
     } catch (e) {
       print(">>>>>>>>>>>> ERROR:" + e.toString());
     }
@@ -243,8 +249,17 @@ class TakePictureScreenState extends State<TakePictureScreen> {
     }
   }
 
+  setRecognitions(recognitions, imageHeight, imageWidth) {
+    setState(() {
+      _recognitions = recognitions;
+      _imageHeight = imageHeight;
+      _imageWidth = imageWidth;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size screen = MediaQuery.of(context).size;
     // 방법 2
     // return Screenshot(
     //   controller: screenshotController,
@@ -253,17 +268,22 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       appBar: AppBar(title: Text('hud')),
       // 카메라 프리뷰를 보여주기 전에 컨트롤러 초기화를 기다려야 합니다. 컨트롤러 초기화가
       // 완료될 때까지 FutureBuilder를 사용하여 로딩 스피너를 보여주세요.
-      body: FutureBuilder<void>(
-        future: _initializeControllerFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            // Future가 완료되면, 프리뷰를 보여줍니다.
-            return CameraPreview(_controller);
-          } else {
-            // 그렇지 않다면, 진행 표시기를 보여줍니다.
-            return Center(child: CircularProgressIndicator());
-          }
-        },
+      body: Stack(
+        children: [
+          Camera(
+            widget.cameras,
+            _model,
+            setRecognitions,
+          ),
+          BndBox(
+              _recognitions == null ? [] : _recognitions,
+              math.max(_imageHeight, _imageWidth),
+              math.min(_imageHeight, _imageWidth),
+              screen.height,
+              screen.width,
+              _model
+          ),
+        ],
       ),
     );
   }

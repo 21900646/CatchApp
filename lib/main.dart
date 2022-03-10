@@ -46,8 +46,8 @@ import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'home.dart';
-import 'home_screen.dart';
+import 'package:tflite/tflite.dart';
+import 'main_screen.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -72,14 +72,11 @@ Future<void> main() async {
   //final firstCamera = cameras.first;
 
   runApp(
-    CatchApp(cameras),
+    CatchApp(),
   );
 }
 
 class CatchApp extends StatelessWidget {
-  final List<CameraDescription> cameras;
-
-  CatchApp(this.cameras);
 
   @override
   Widget build(BuildContext context) {
@@ -90,10 +87,9 @@ class CatchApp extends StatelessWidget {
           // theme: AppTheme.regularTheme,
             title: 'Catch',
             debugShowCheckedModeBanner: false,
-            home: HomeScreen(cameras),
+            home: MainScreen(cameras),
             // initialRoute: '/splash',
             routes: {
-
               // '/login': (context) => login(cameras),
               // '/splash': (context) => splash(cameras),
             }

@@ -10,7 +10,6 @@ import 'package:catch_app/theme/app_colors.dart';
 import 'dart:math' as math;
 import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
 
-import '../../home.dart';
 import '../../main.dart';
 import '../../speed.dart';
 import 'package:catch_app/detectObject/bndbox.dart';

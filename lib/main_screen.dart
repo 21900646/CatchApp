@@ -10,14 +10,17 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hive/hive.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:tflite/tflite.dart';
 
 import 'detectDrawsy/face_detector_view.dart';
 import 'detectObject/camera.dart';
+import 'hud.dart';
 import 'main.dart';
 import 'pushed_pageA.dart';
 
 double lat = 0.0;
 double lon = 0.0;
+List<String> user_want = [];
 
 class MainScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -42,10 +45,22 @@ class _MainScreenState extends State<MainScreen> {
   List time_firebase = [];
 
   List location_firebase = [];
+  bool user_want_person = false;
+  bool user_want_laptop = false;
+  bool user_want_car = false;
 
   @override
   void initState() {
     super.initState();
+    loadModel();
+  }
+
+  loadModel() async {
+    String? res;
+    res = await Tflite.loadModel(
+      model: "assets/yolov2_tiny.tflite",
+      labels: "assets/yolov2_tiny.txt",
+    );
   }
 
   create(String audio) async{
@@ -155,6 +170,8 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget build(BuildContext context) {
     Size screen = MediaQuery.of(context).size;
+    Color color1 = Colors.white;
+
     return Scaffold(
       backgroundColor: Colors.white,
       // appBar: AppBar(
@@ -179,7 +196,17 @@ class _MainScreenState extends State<MainScreen> {
                 padding: EdgeInsets.symmetric(vertical: 5.0),
                 scrollDirection: Axis.horizontal,
                 children: [
-
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>
+                            TakePictureScreen(cameras: widget.cameras),
+                        ),
+                      );
+                    },
+                    child: Text('hud start!'),
+                  ),
                   //////팔 드는 것
                   Stack(
                     children: <Widget>[
@@ -259,6 +286,80 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                 ],
               ),
+            ),
+          ),
+
+          //선택 단어
+          OutlinedButton(
+            child: Text("person"),
+            onPressed: () {
+              setState(() {
+                color1 = Colors.blue;
+                if(user_want_person){
+                  user_want.removeWhere((item) => item == "person");
+                }
+                else{
+                  user_want.add("person");
+                  print(user_want_person);
+                }
+                user_want_person = !user_want_person;
+                user_want = user_want.toSet().toList();
+              });
+              print(user_want);
+            },
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              ),
+              backgroundColor: MaterialStateProperty.all(color1)
+            ),
+          ),
+          OutlinedButton(
+            child: Text("laptop"),
+            onPressed: () {
+                setState(() {
+                  color1 = Colors.blue;
+                  if(user_want_laptop){
+                    user_want.removeWhere((item) => item == "laptop");
+                  }
+                  else{
+                    user_want.add("laptop");
+                    print(user_want_laptop);
+                  }
+                  user_want_laptop = !user_want_laptop;
+                  user_want = user_want.toSet().toList();
+                });
+              print(user_want);
+            },
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                ),
+                backgroundColor: MaterialStateProperty.all(color1)
+            ),
+          ),
+          OutlinedButton(
+            child: Text("car"),
+            onPressed: () {
+              setState(() {
+                color1 = Colors.blue;
+                if(user_want_car){
+                  user_want.removeWhere((item) => item == "car");
+                }
+                else{
+                  user_want.add("car");
+                  print(user_want_car);
+                }
+                user_want_car = !user_want_car;
+                user_want = user_want.toSet().toList();
+              });
+              print(user_want);
+            },
+            style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                ),
+                backgroundColor: MaterialStateProperty.all(color1)
             ),
           ),
         ],
